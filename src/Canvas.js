@@ -226,8 +226,6 @@ class Canvas {
                     if(c.material.name === 'stairs'){
 
                         c.material.roughness = 0.02
-                        // c.material.envMapIntensity = 20
-                        console.log(c.material)
                     }
 
                     if (c.material.name === 'table-lamp') {

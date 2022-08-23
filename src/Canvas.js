@@ -125,6 +125,17 @@ class Canvas {
               amount: 0.3
             }
         },'-=1')
+
+        timeline.to('.link', {
+            autoAlpha: 1,
+            y: '0%',
+            duration: 0.5,
+            ease: "Power4.out",
+            delay: 0.5,
+            stagger: {
+              amount: 0.3
+            }
+        },'-=1')
     }
 
     createRenderer () {
@@ -168,13 +179,14 @@ class Canvas {
 
     createGeometry() {
 
+
 		this.mesh = new THREE.Mesh()
 		this.loader = new GLTFLoader(this.loaderManager)
 		const dracoLoader = new DRACOLoader(this.loaderManager)
 		dracoLoader.setDecoderPath('/draco/')
 		this.loader.setDRACOLoader(dracoLoader)
 
-		this.loader.load('/loft-v1.glb', (gltf) => {
+		this.loader.load('/loft2.glb', (gltf) => {
 			const box = new THREE.Box3()
 			const center = box.getCenter( new THREE.Vector3() )
 			let frameEmit
@@ -197,8 +209,25 @@ class Canvas {
                     }
 
                     if (c.material.name === 'Material.003') {
-                        c.material.roughness = 1
+                        c.material.roughness = 0.5
+                        c.material.color.setScalar(0.2)
+                        c.material.emissiveIntensity = 0
+                        c.material.normalScale.setScalar(0.2)
 
+                    }
+
+                    if (c.material.name === 'Material.001') {
+                        c.material.metalnessMap = null
+                        c.material.color.setScalar(0.3)
+                        c.material.normalScale.setScalar(0.4)
+                        c.material.roughness = 1
+                    }
+
+                    if(c.material.name === 'stairs'){
+
+                        c.material.roughness = 0.02
+                        // c.material.envMapIntensity = 20
+                        console.log(c.material)
                     }
 
                     if (c.material.name === 'table-lamp') {
@@ -276,40 +305,45 @@ class Canvas {
 
     
 	createLights() {
+
         this.ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.3)
 		this.scene.add(this.ambientLight)
 
-        const spotLight = new THREE.SpotLight( 0xddc9cd, 5 );
-        spotLight.position.set( 4, 5, -5 );
-        spotLight.penumbra = 1;
-        spotLight.angle = 0.3;
-        spotLight.decay = 2;
-        spotLight.distance = 12;
+        const spotLight = new THREE.SpotLight( 0xddc9cd, 5 )
+        spotLight.position.set( 4, 5, -5 )
+        spotLight.penumbra = 1
+        spotLight.angle = 0.3
+        spotLight.decay = 2
+        spotLight.distance = 12
 
-        spotLight.castShadow = true;
-        spotLight.shadow.mapSize.width = 512;
-        spotLight.shadow.mapSize.height = 512;
-        spotLight.shadow.camera.near = 10;
-        spotLight.shadow.camera.far = 200;
-        spotLight.shadow.focus = 1;
-        this.scene.add( spotLight );
+        spotLight.castShadow = true
+        spotLight.shadow.mapSize.width = 512
+        spotLight.shadow.mapSize.height = 512
+        spotLight.shadow.camera.near = 10
+        spotLight.shadow.camera.far = 200
+        spotLight.shadow.focus = 1
+        this.scene.add( spotLight )
 
-        const sphere = new THREE.SphereGeometry( 0.09 );
-        const light1 = new THREE.PointLight( 0xffe3ac, 0.1, 2 );
-        light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffe3ac } ) ) );
+        const sphere = new THREE.SphereGeometry( 0.09 )
+        const sphere2 = new THREE.SphereGeometry( 0.04 )
+        const light1 = new THREE.PointLight( 0xffe3ac, 0.1, 2 )
+        light1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffe3ac } ) ) )
         light1.position.set(-1.13, 2.18, -0.8)
-        this.scene.add( light1 );
+        this.scene.add( light1 )
 
-        const light2 = new THREE.PointLight( 0xffe3ac, 0.1, 2 );
-        light2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffe3ac } ) ) );
+        const light2 = new THREE.PointLight( 0xffe3ac, 0.1, 2 )
+        light2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffe3ac } ) ) )
         light2.position.set(-1.75, 3, -0.8)
-        this.scene.add( light2 );
+        this.scene.add( light2 )
+
+        const light3 = new THREE.PointLight( 0xffe3ac, 0.5, 3 )
+        light3.add( new THREE.Mesh( sphere2, new THREE.MeshBasicMaterial( { color: 0xffe3ac } ) ) )
+        light3.position.set(-2.83, 0.75, -0.55)
+        this.scene.add( light3 )
 
 
-        // const lightHelper = new THREE.SpotLightHelper( spotLight );
-        // this.scene.add( lightHelper );
-
-
+        // const lightHelper = new THREE.SpotLightHelper( spotLight )
+        // this.scene.add( lightHelper )
 
 	}
 

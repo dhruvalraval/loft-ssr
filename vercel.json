@@ -1,0 +1,42 @@
+{
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "headers": [
+        {
+            "source": "/fivosansmodern-regular-webfont.woff",
+            "headers": [
+            {
+                "key": "Cache-Control",
+                "value": "public, max-age=31536000, immutable"
+            }
+            ]
+        },
+        {
+            "source": "/fivosansmodern-regular-webfont.woff2",
+            "headers": [
+            {
+                "key": "Cache-Control",
+                "value": "public, max-age=31536000, immutable"
+            }
+            ]
+        },
+        {
+            "source": "/fivosansmodern-medium-webfont.woff",
+            "headers": [
+            {
+                "key": "Cache-Control",
+                "value": "public, max-age=31536000, immutable"
+            }
+            ]
+        },
+        {
+            "source": "/fivosansmodern-medium-webfont.woff2",
+            "headers": [
+            {
+                "key": "Cache-Control",
+                "value": "public, max-age=31536000, immutable"
+            }
+            ]
+        }
+    ]
+}

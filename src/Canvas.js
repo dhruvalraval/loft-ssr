@@ -164,7 +164,7 @@ class Canvas {
         if(window.innerWidth <= 500){
             this.camera.fov = 85
         } 
-        this.camera.position.set(0, 0.8, 4.4)
+        this.camera.position.set(0, 1.2, 4.4)
         this.controls.target = new THREE.Vector3(0, 1.8, -3)
         this.controls.enableDamping = true
         this.controls.panSpeed = 0.3
@@ -212,15 +212,15 @@ class Canvas {
                         c.material.roughness = 0.5
                         c.material.color.setScalar(0.2)
                         c.material.emissiveIntensity = 0
-                        c.material.normalScale.setScalar(0.2)
+                        c.material.normalScale.setScalar(1)
 
                     }
 
                     if (c.material.name === 'Material.001') {
                         c.material.metalnessMap = null
                         c.material.color.setScalar(0.3)
-                        c.material.normalScale.setScalar(0.4)
-                        c.material.roughness = 1
+                        c.material.normalScale.setScalar(3)
+                        c.material.roughness = 0.5
                     }
 
                     if(c.material.name === 'stairs'){
@@ -235,15 +235,15 @@ class Canvas {
                     }
                     
                     if (c.material.name.includes("floor")) {
-                        c.material.roughness = 0.003
+                        c.material.roughness = 0.01
 
                     }
 
                     if (c.material.name === "glass") {
-                        c.material.roughness = 0.11
+                        c.material.roughness = 0.1
                         c.material.transparent = true
                         c.material.ior = 1.33
-                        c.material.iridescenceIOR = 2
+                        c.material.iridescenceIOR = 1.33
                         c.material.thickness = 1 
                         c.material.opacity = 0.2
                         c.material.emissiveIntensity = 0
